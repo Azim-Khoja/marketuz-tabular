@@ -64,3 +64,11 @@ Validated metrics include total revenue, distinct order count, and 2024 revenue.
 ## Purpose
 
 This project demonstrates practical skills in dimensional modeling, DAX measure development, SSAS Tabular deployment, and analytical reporting.
+
+## Data Model Diagram
+
+![SSAS Tabular Model](images/model_diagram.png)
+
+## Excel PivotTable Validation
+
+![Excel PivotTable Results](images/excel_pivot.png)
