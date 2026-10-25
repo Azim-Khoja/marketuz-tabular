@@ -1,0 +1,722 @@
+{
+  "name": "SemanticModel",
+  "compatibilityLevel": 1500,
+  "model": {
+    "culture": "en-US",
+    "dataSources": [
+      {
+        "type": "structured",
+        "name": "SQL/localhost;MarketUZ_DWH",
+        "connectionDetails": {
+          "protocol": "tds",
+          "address": {
+            "server": "localhost",
+            "database": "MarketUZ_DWH"
+          },
+          "authentication": null,
+          "query": null
+        },
+        "options": {},
+        "credential": {
+          "AuthenticationKind": "Windows",
+          "Username": "AZIMJONMAKH60A8\\azimjon",
+          "EncryptConnection": false
+        }
+      }
+    ],
+    "tables": [
+      {
+        "name": "DimCustomer",
+        "columns": [
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "CustomerName",
+            "dataType": "string",
+            "sourceColumn": "CustomerName"
+          },
+          {
+            "name": "ChannelType",
+            "dataType": "string",
+            "sourceColumn": "ChannelType"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "Region"
+          },
+          {
+            "name": "SignupDate",
+            "dataType": "dateTime",
+            "sourceColumn": "SignupDate"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;MarketUZ_DWH\",",
+                "    dbo_DimCustomer = Source{[Schema=\"dbo\",Item=\"DimCustomer\"]}[Data]",
+                "in",
+                "    dbo_DimCustomer"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimDate",
+        "dataCategory": "Time",
+        "columns": [
+          {
+            "name": "DateKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "DateKey"
+          },
+          {
+            "name": "Date",
+            "dataType": "dateTime",
+            "isKey": true,
+            "sourceColumn": "Date"
+          },
+          {
+            "name": "Year",
+            "dataType": "int64",
+            "sourceColumn": "Year"
+          },
+          {
+            "name": "Quarter",
+            "dataType": "string",
+            "sourceColumn": "Quarter"
+          },
+          {
+            "name": "MonthNumber",
+            "dataType": "int64",
+            "sourceColumn": "MonthNumber"
+          },
+          {
+            "name": "MonthName",
+            "dataType": "string",
+            "sourceColumn": "MonthName"
+          },
+          {
+            "name": "YearMonth",
+            "dataType": "string",
+            "sourceColumn": "YearMonth"
+          },
+          {
+            "name": "DayOfMonth",
+            "dataType": "int64",
+            "sourceColumn": "DayOfMonth"
+          },
+          {
+            "name": "WeekdayNumber",
+            "dataType": "int64",
+            "sourceColumn": "WeekdayNumber"
+          },
+          {
+            "name": "WeekdayName",
+            "dataType": "string",
+            "sourceColumn": "WeekdayName"
+          },
+          {
+            "name": "IsWeekend",
+            "dataType": "boolean",
+            "sourceColumn": "IsWeekend"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;MarketUZ_DWH\",",
+                "    dbo_DimDate = Source{[Schema=\"dbo\",Item=\"DimDate\"]}[Data]",
+                "in",
+                "    dbo_DimDate"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimEmployee",
+        "columns": [
+          {
+            "name": "EmployeeKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "EmployeeKey"
+          },
+          {
+            "name": "EmployeeName",
+            "dataType": "string",
+            "sourceColumn": "EmployeeName"
+          },
+          {
+            "name": "Team",
+            "dataType": "string",
+            "sourceColumn": "Team"
+          },
+          {
+            "name": "Position",
+            "dataType": "string",
+            "sourceColumn": "Position"
+          },
+          {
+            "name": "HireDate",
+            "dataType": "dateTime",
+            "sourceColumn": "HireDate"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;MarketUZ_DWH\",",
+                "    dbo_DimEmployee = Source{[Schema=\"dbo\",Item=\"DimEmployee\"]}[Data]",
+                "in",
+                "    dbo_DimEmployee"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "DimProduct",
+        "columns": [
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "ProductKey"
+          },
+          {
+            "name": "ProductName",
+            "dataType": "string",
+            "sourceColumn": "ProductName"
+          },
+          {
+            "name": "Category",
+            "dataType": "string",
+            "sourceColumn": "Category"
+          },
+          {
+            "name": "Subcategory",
+            "dataType": "string",
+            "sourceColumn": "Subcategory"
+          },
+          {
+            "name": "Supplier",
+            "dataType": "string",
+            "sourceColumn": "Supplier"
+          },
+          {
+            "name": "UnitCost",
+            "dataType": "double",
+            "sourceColumn": "UnitCost"
+          },
+          {
+            "name": "ListPrice",
+            "dataType": "double",
+            "sourceColumn": "ListPrice"
+          },
+          {
+            "name": "Status",
+            "dataType": "string",
+            "sourceColumn": "Status"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;MarketUZ_DWH\",",
+                "    dbo_DimProduct = Source{[Schema=\"dbo\",Item=\"DimProduct\"]}[Data]",
+                "in",
+                "    dbo_DimProduct"
+              ]
+            }
+          }
+        ],
+        "hierarchies": [
+          {
+            "name": "Product Hierarchy",
+            "levels": [
+              {
+                "name": "Category",
+                "ordinal": 0,
+                "column": "Category"
+              },
+              {
+                "name": "Subcategory",
+                "ordinal": 1,
+                "column": "Subcategory"
+              },
+              {
+                "name": "ProductName",
+                "ordinal": 2,
+                "column": "ProductName"
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "DimWarehouse",
+        "columns": [
+          {
+            "name": "WarehouseKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "WarehouseKey"
+          },
+          {
+            "name": "WarehouseName",
+            "dataType": "string",
+            "sourceColumn": "WarehouseName"
+          },
+          {
+            "name": "City",
+            "dataType": "string",
+            "sourceColumn": "City"
+          },
+          {
+            "name": "Region",
+            "dataType": "string",
+            "sourceColumn": "Region"
+          },
+          {
+            "name": "WarehouseType",
+            "dataType": "string",
+            "sourceColumn": "WarehouseType"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;MarketUZ_DWH\",",
+                "    dbo_DimWarehouse = Source{[Schema=\"dbo\",Item=\"DimWarehouse\"]}[Data]",
+                "in",
+                "    dbo_DimWarehouse"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "FactOrders",
+        "columns": [
+          {
+            "name": "OrderLineKey",
+            "dataType": "int64",
+            "sourceColumn": "OrderLineKey"
+          },
+          {
+            "name": "OrderDateKey",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "OrderDateKey"
+          },
+          {
+            "name": "ShipDateKey",
+            "dataType": "int64",
+            "sourceColumn": "ShipDateKey"
+          },
+          {
+            "name": "ProductKey",
+            "dataType": "int64",
+            "sourceColumn": "ProductKey"
+          },
+          {
+            "name": "CustomerKey",
+            "dataType": "int64",
+            "sourceColumn": "CustomerKey"
+          },
+          {
+            "name": "WarehouseKey",
+            "dataType": "int64",
+            "sourceColumn": "WarehouseKey"
+          },
+          {
+            "name": "EmployeeKey",
+            "dataType": "int64",
+            "sourceColumn": "EmployeeKey"
+          },
+          {
+            "name": "OrderNumber",
+            "dataType": "string",
+            "sourceColumn": "OrderNumber"
+          },
+          {
+            "name": "Quantity",
+            "dataType": "int64",
+            "isHidden": true,
+            "sourceColumn": "Quantity"
+          },
+          {
+            "name": "UnitPrice",
+            "dataType": "double",
+            "sourceColumn": "UnitPrice"
+          },
+          {
+            "name": "DiscountAmount",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "DiscountAmount"
+          },
+          {
+            "name": "NetAmount",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "NetAmount"
+          },
+          {
+            "name": "TotalCost",
+            "dataType": "double",
+            "isHidden": true,
+            "sourceColumn": "TotalCost"
+          },
+          {
+            "name": "IsReturn",
+            "dataType": "boolean",
+            "sourceColumn": "IsReturn"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "Partition",
+            "dataView": "full",
+            "source": {
+              "type": "m",
+              "expression": [
+                "let",
+                "    Source = #\"SQL/localhost;MarketUZ_DWH\",",
+                "    dbo_FactOrders = Source{[Schema=\"dbo\",Item=\"FactOrders\"]}[Data]",
+                "in",
+                "    dbo_FactOrders"
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "name": "_Measures",
+        "columns": [
+          {
+            "type": "calculatedTableColumn",
+            "name": "Placeholder",
+            "dataType": "int64",
+            "isNameInferred": true,
+            "isDataTypeInferred": true,
+            "isHidden": true,
+            "sourceColumn": "[Placeholder]"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "CalculatedTable 1",
+            "source": {
+              "type": "calculated",
+              "expression": " ROW(\"Placeholder\", BLANK())"
+            }
+          }
+        ],
+        "measures": [
+          {
+            "name": "Total Revenue",
+            "description": "Barcha buyurtma qatorlari bo‘yicha sof tushumning jami miqdorini hisoblaydi.",
+            "expression": " SUM(FactOrders[NetAmount])",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "01 - Sales",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Cost",
+            "description": "Barcha buyurtma qatorlari bo‘yicha jami tannarxni hisoblaydi",
+            "expression": " SUM(FactOrders[TotalCost])",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "01 - Sales",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Gross Profit",
+            "description": "Yalpi foydani jami tushumdan jami tannarxni ayirish orqali hisoblaydi",
+            "expression": " ([Total Revenue] - [Total Cost])",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "01 - Sales",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Margin %",
+            "description": "Yalpi foydaning jami tushumga nisbatan foizini hisoblaydi",
+            "expression": " DIVIDE([Gross Profit], [Total Revenue], 0)",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Total Quantity",
+            "description": "Sotilgan mahsulotlarning jami miqdorini hisoblaydi",
+            "expression": " SUM(FactOrders[Quantity])",
+            "formatString": "0",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Order Count",
+            "description": "Takrorlanmaydigan buyurtma raqamlarini sanab, noyob buyurtmalar sonini hisoblaydi",
+            "expression": " DISTINCTCOUNT(FactOrders[OrderNumber])",
+            "formatString": "0",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Average Order Value",
+            "description": "Jami tushumni noyob buyurtmalar soniga bo‘lish orqali bitta buyurtmaga to‘g‘ri keladigan o‘rtacha tushumni hisoblaydi",
+            "expression": [
+              "",
+              "DIVIDE([Total Revenue], [Order Count], 0)"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "01 - Sales",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Total Discount",
+            "description": "Barcha buyurtma qatorlaridagi chegirmalar summasini hisoblaydi; bo‘sh qiymatlar yig‘indiga kiritilmaydi",
+            "expression": " SUM(FactOrders[DiscountAmount])",
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "01 - Sales",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Discount %",
+            "description": "Jami chegirma summasining jami tushumga nisbatan foizini hisoblaydi",
+            "expression": " DIVIDE([Total Discount], [Total Revenue], 0)",
+            "formatString": "0.00%;-0.00%;0.00%",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Return Lines",
+            "description": "IsReturn qiymati TRUE bo‘lgan, ya’ni qaytarilgan deb belgilangan buyurtma qatorlarini sanaydi",
+            "expression": " CALCULATE(COUNTROWS(FactOrders), FactOrders[IsReturn] = TRUE())",
+            "formatString": "0",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Revenue % of Total",
+            "description": "Joriy tushumning DimProduct jadvalidagi filtrlar olib tashlangan holatda hisoblangan tushumga nisbatan foizini hisoblaydi",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Total Revenue],",
+              "    CALCULATE(",
+              "        [Total Revenue],",
+              "        REMOVEFILTERS(DimProduct)",
+              "    ),",
+              "    0",
+              ")"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Revenue % of Category",
+            "description": "Joriy filtr kontekstidagi tushumning tegishli mahsulot kategoriyasi bo‘yicha jami tushumga nisbatan foizini ALLEXCEPT yordamida hisoblaydi",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Total Revenue],",
+              "    CALCULATE(",
+              "        [Total Revenue],",
+              "        ALLEXCEPT(",
+              "            DimProduct,",
+              "            DimProduct[Category]",
+              "        )",
+              "    ),",
+              "    0",
+              ")"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Revenue PY",
+            "description": "SAMEPERIODLASTYEAR funksiyasi yordamida joriy davrga mos o‘tgan yil davri tushumini hisoblaydi",
+            "expression": [
+              "",
+              "CALCULATE(",
+              "    [Total Revenue],",
+              "    SAMEPERIODLASTYEAR(DimDate[Date])",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "01 - Sales",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "YoY %",
+            "description": "Joriy davr tushumining o‘tgan yilning mos davri tushumiga nisbatan foizli o‘zgarishini hisoblaydi",
+            "expression": [
+              "",
+              "DIVIDE(",
+              "    [Total Revenue] - [Revenue PY],",
+              "    [Revenue PY],",
+              "    0",
+              ")"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "displayFolder": "01 - Sales"
+          },
+          {
+            "name": "Revenue YTD",
+            "description": "TOTALYTD funksiyasi yordamida yil boshidan joriy sanagacha bo‘lgan jami tushumni hisoblaydi",
+            "expression": [
+              "",
+              "TOTALYTD(",
+              "    [Total Revenue],",
+              "    DimDate[Date]",
+              ")"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "displayFolder": "01 - Sales",
+            "annotations": [
+              {
+                "name": "Format",
+                "value": "<Format Format=\"Currency\" Accuracy=\"2\"><Currency LCID=\"1033\" DisplayName=\"$ English (United States)\" Symbol=\"$\" PositivePattern=\"0\" NegativePattern=\"0\" /></Format>"
+              }
+            ]
+          },
+          {
+            "name": "Top Customer Name",
+            "description": "Joriy filtr kontekstida eng yuqori tushum keltirgan mijozning nomini qaytaradi",
+            "expression": [
+              "",
+              "VAR CustomerRevenue =",
+              "    ADDCOLUMNS(",
+              "        VALUES(DimCustomer[CustomerName]),",
+              "        \"RevenueValue\", [Total Revenue]",
+              "    )",
+              "VAR TopCustomer =",
+              "    TOPN(",
+              "        1,",
+              "        CustomerRevenue,",
+              "        [RevenueValue], DESC,",
+              "        DimCustomer[CustomerName], ASC",
+              "    )",
+              "RETURN",
+              "    CONCATENATEX(",
+              "        TopCustomer,",
+              "        DimCustomer[CustomerName],",
+              "        \", \"",
+              "    )"
+            ],
+            "displayFolder": "01 - Sales"
+          }
+        ]
+      }
+    ],
+    "relationships": [
+      {
+        "name": "2a976b93-b9c7-4898-aa0e-69c37fe26844",
+        "fromTable": "FactOrders",
+        "fromColumn": "OrderDateKey",
+        "toTable": "DimDate",
+        "toColumn": "DateKey"
+      },
+      {
+        "name": "38b702b9-3968-4316-986a-af55e5cbeac6",
+        "fromTable": "FactOrders",
+        "fromColumn": "ProductKey",
+        "toTable": "DimProduct",
+        "toColumn": "ProductKey"
+      },
+      {
+        "name": "3b45d9f1-3082-4647-a9be-a3238b223bc9",
+        "fromTable": "FactOrders",
+        "fromColumn": "CustomerKey",
+        "toTable": "DimCustomer",
+        "toColumn": "CustomerKey"
+      },
+      {
+        "name": "242cd488-23f5-4583-9ab9-983c74b262cb",
+        "fromTable": "FactOrders",
+        "fromColumn": "WarehouseKey",
+        "toTable": "DimWarehouse",
+        "toColumn": "WarehouseKey"
+      },
+      {
+        "name": "2df62c38-44ea-4296-90a6-0b5071aef677",
+        "fromTable": "FactOrders",
+        "fromColumn": "EmployeeKey",
+        "toTable": "DimEmployee",
+        "toColumn": "EmployeeKey"
+      }
+    ],
+    "annotations": [
+      {
+        "name": "ClientCompatibilityLevel",
+        "value": "600"
+      }
+    ]
+  },
+  "id": "SemanticModel"
+}
